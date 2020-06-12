@@ -1,0 +1,33 @@
+{
+    "name": "Spotify mute Ads",
+    "version": "0.1",
+    "description": "Mute the ads in Spotify",
+    "manifest_version": 2,
+    "background": {
+        "scripts": [
+            "event_pages.js"
+        ],
+        "persistent": false
+    },
+    "page_action": {
+        "default_icon": "spotify.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://open.spotify.com/*"
+            ],
+            "js": [
+                "jquery-3.5.1.min.js",
+                "content.js"
+            ],
+            "css": [
+                "content.css"
+            ]
+        }
+    ],
+    "permissions": [
+        "tabs",
+        "https://open.spotify.com/*"
+    ]
+}
