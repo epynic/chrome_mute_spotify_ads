@@ -1,13 +1,14 @@
 chrome.runtime.sendMessage({ todo: "showPageAction" });
+chrome.runtime.sendMessage({ muteTab: false })
 
 var observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
         if (mutation.attributeName === "data-testid") {
-            var attributeValue = $(mutation.target).attr(mutation.attributeName);
-            if (attributeValue == 'now-playing-bar-ad-type-ad')
-                chrome.runtime.sendMessage({ muteTab: true });
-            else
-                chrome.runtime.sendMessage({ muteTab: false });
+            var attributeValue = mutation.target.dataset.testid;
+            if (!attributeValue) return;
+            if (attributeValue == 'now-playing-bar-ad-type-ad') {
+                chrome.runtime.sendMessage({ muteTab: 'yes' });
+            } else chrome.runtime.sendMessage({ muteTab: 'no' });
         }
     });
 });
@@ -19,9 +20,9 @@ function isNodeAvailable() {
         return;
     }
 
-    console.log('Loaded - SpotifyAds Muted');
     observer.observe(playFooter, {
         attributes: true
     });
 }
+
 isNodeAvailable();
