@@ -16,5 +16,5 @@
       "css": ["content.css"]
     }
   ],
-  "permissions": [""]
+  "permissions": ["tabs"]
 }

@@ -2,9 +2,11 @@ chrome.runtime.sendMessage({ todo: "showPageAction" });
 chrome.runtime.sendMessage({ muteTab: false });
 
 var observer = new MutationObserver(function (mutations) {
-  if (mutations[0].target.innerText.indexOf("Advertisement") !== -1)
+  if (mutations[0].target.innerText.indexOf("Advertisement") !== -1) {
     chrome.runtime.sendMessage({ muteTab: "yes" });
-  else chrome.runtime.sendMessage({ muteTab: "no" });
+  } else {
+    chrome.runtime.sendMessage({ muteTab: "no" });
+  }
 });
 
 function isNodeAvailable() {
