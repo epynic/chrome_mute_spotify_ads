@@ -1,32 +1,20 @@
 {
-    "name": "Spotify mute Ads",
-    "version": "0.1",
-    "description": "Mute the ads in Spotify",
-    "manifest_version": 2,
-    "background": {
-        "scripts": [
-            "event_pages.js"
-        ],
-        "persistent": false
-    },
-    "page_action": {
-        "default_icon": "spotify.png"
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "https://open.spotify.com/*"
-            ],
-            "js": [
-                "content.js"
-            ],
-            "css": [
-                "content.css"
-            ]
-        }
-    ],
-    "permissions": [
-        "tabs",
-        "https://open.spotify.com/*"
-    ]
+  "name": "Spotify Mute",
+  "description": "Spotify extension for muting Ads",
+  "version": "0.2",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": "spotify.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://open.spotify.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "permissions": [""]
 }
